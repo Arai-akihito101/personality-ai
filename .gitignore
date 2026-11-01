@@ -12,3 +12,9 @@ personality_history.json
 *.pt
 *.pth
 *.ckpt
+
+personality_settings.json
+*.json.tmp
+.ipynb_checkpoints/
+ao_lora_adapter/
+ao_lora_adapter.zip
