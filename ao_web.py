@@ -109,6 +109,10 @@ class App(BaseHTTPRequestHandler):
                 self.send_bytes(HTML_FILE.read_bytes(), "text/html; charset=utf-8")
             except OSError:
                 self.send_json({"error": "画面ファイルがありません"}, 500)
+        elif self.path == "/style.css":
+            self.send_bytes((BASE_DIR / "web" / "style.css").read_bytes(), "text/css; charset=utf-8")
+        elif self.path == "/app.js":
+            self.send_bytes((BASE_DIR / "web" / "app.js").read_bytes(), "text/javascript; charset=utf-8")
         elif self.path == "/api/state":
             with LOCK:
                 self.send_json({"history": history[-100:], "memories": memories,
