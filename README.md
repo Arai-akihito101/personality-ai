@@ -8,10 +8,10 @@
 
 1. [Python 3.10 以上](https://www.python.org/downloads/windows/) と [Ollama for Windows](https://ollama.com/download/windows) をインストール。
 2. [このリポジトリの ZIP](https://github.com/Arai-akihito101/personality-ai/archive/refs/heads/main.zip) をダウンロードし、右クリックから展開。
-3. 展開先の **start_ai.bat** をダブルクリック。初回はモデル \`qwen3:1.7b\`（約1.4GB）がダウンロードされます。
+3. 展開先の **start_ai.bat** をダブルクリック。初回はモデル `qwen3:1.7b`（約1.4GB）がダウンロードされます。
 4. 自動でブラウザが開き、**http://127.0.0.1:8765/** でアオと話せます。
 
-バッチファイルがうまく開かない場合は PowerShell で \`ollama pull qwen3:1.7b\` を実行してから、展開フォルダ内で \`py -3 ao_web.py\` を実行してください。
+バッチファイルがうまく開かない場合は PowerShell で `ollama pull qwen3:1.7b` を実行してから、展開フォルダ内で `py -3 ao_web.py` を実行してください。
 
 ### できること
 
@@ -21,9 +21,9 @@
 - 過去の会話履歴を削除。登録済みの性格・記憶は消えません。
 - ネットに公開されるサイトではありません。ブラウザからこのPC内のOllamaへ接続するだけです。
 
-会話・記憶・性格は実行フォルダ内の \`personality_history.json\`、\`personality_memory.json\`、\`personality_settings.json\` に保存されます。個人情報を登録するときは注意してください。これらは \`.gitignore\` でGitHubへの通常のコミットから除外します。
+会話・記憶・性格は実行フォルダ内の `personality_history.json`、`personality_memory.json`、`personality_settings.json` に保存されます。個人情報を登録するときは注意してください。これらは `.gitignore` でGitHubへの通常のコミットから除外します。
 
-使っている技術: \`ao_web.py\`（HTTPサーバー）、\`web/index.html\`、\`web/style.css\`、\`web/app.js\`、\`personality_chat_local.py\`（従来のコマンドライン版）。
+使っている技術: `ao_web.py`（HTTPサーバー）、`web/index.html`、`web/style.css`、`web/app.js`、`personality_chat_local.py`（従来のコマンドライン版）。
 
 ## AIを自分で学習する
 
@@ -42,13 +42,13 @@ Qwen3-0.6Bをベースに**LoRAの重みを実際に学習**します。
 1. Colabの「ランタイム」からGPUを選びます（無料枠では利用できないこともあります）。
 2. 「ランタイム → すべてのセルを実行」を選びます。初回は依存パッケージとベースモデルのダウンロードが必要です。
 3. 学習前後の回答を比較し、最後にアオと会話してみます。
-4. LoRA差分ファイル \`ao_lora_adapter.zip\` をダウンロードできます。
+4. LoRA差分ファイル `ao_lora_adapter.zip` をダウンロードできます。
 
 **重要:** 50例程度の学習は小規模な実験なので、人格の一貫性や性能向上は保証されません。**このLoRAは上のOllamaのWeb画面へ自動連携されません。** 必要になれば、ベースモデルとアダプターの統合・変換を別途行う必要があります。Colabで作った学習結果はGitHubへ自動アップロードされません。
 
 ## データと安全性
 
-- 通信先: ローカルの \`127.0.0.1:8765\`（画面）と \`127.0.0.1:11434\`（Ollama）
+- 通信先: ローカルの `127.0.0.1:8765`（画面）と `127.0.0.1:11434`（Ollama）
 - 会話記録と記憶: PCのファイルに保存。明示的な操作で削除可能。
 - Ollamaモデルの初回取得とColabの学習にはインターネット接続が必要。
 - ChatGPTなどの有料APIキーは不要。
