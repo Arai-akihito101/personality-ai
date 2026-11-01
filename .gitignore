@@ -1,0 +1,14 @@
+# Local conversation records, trained weights, secrets, Python caches
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+venv/
+personality_memory.json
+personality_history.json
+*.safetensors
+*.pt
+*.pth
+*.ckpt
