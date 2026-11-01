@@ -1,0 +1,44 @@
+name: Quick checks
+
+on:
+  push:
+    paths:
+      - 'ao_web.py'
+      - 'personality_chat_local.py'
+      - 'web/**'
+      - 'tests/**'
+      - '*.ipynb'
+      - '.github/workflows/check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax check and unit tests
+        run: |
+          python -m py_compile ao_web.py personality_chat_local.py
+          python -m unittest discover -s tests -v
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in Path('.').glob('*.ipynb'):
+              doc = json.loads(p.read_text(encoding='utf-8'))
+              assert doc['cells'], p
+              for cell in doc['cells']:
+                  if cell['cell_type'] != 'code':
+                      continue
+                  src = ''.join(cell['source'])
+                  if src.lstrip().startswith('!'):
+                      continue
+                  compile(src, f'{p.name}:cell', 'exec')
+              print('Notebook syntax OK:', p)
+          PY
