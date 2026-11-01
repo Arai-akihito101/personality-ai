@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f3">
+  <title>アオ｜自分で育てる会話AI</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <header class="brand">
+        <div class="brandmark">ア</div>
+        <div><h1>アオ</h1><p>性格のある日本語AI</p></div>
+      </header>
+      <section class="panel">
+        <h2>性格</h2>
+        <p class="help">ここを変えると次の返答から話し方が変わります。モデルの再学習ではありません。</p>
+        <textarea id="persona" aria-label="AIの性格" rows="9" maxlength="1500"></textarea>
+        <button id="save-persona" class="secondary">性格を保存</button>
+      </section>
+      <section class="panel">
+        <h2>覚えていること</h2>
+        <p class="help">会話中に使う情報を手動で登録します。</p>
+        <ul id="memories" class="memory-list"></ul>
+        <form id="memory-form" class="memory-form">
+          <input id="memory" maxlength="300" placeholder="例：宇宙の話が好き" aria-label="覚えさせること" required>
+          <button type="submit" class="secondary">追加</button>
+        </form>
+      </section>
+      <div class="side-footer">
+        <span id="model">モデル確認中</span>
+        <button id="reset" class="linklike" type="button">会話履歴を消去</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="main-header">
+        <div><strong>アオとの会話</strong><small>このパソコン内で動作</small></div>
+        <span id="status" role="status" aria-live="polite">準備中</span>
+      </div>
+      <div class="conversation" id="conversation" role="log" aria-label="会話履歴" aria-live="polite">
+        <div class="welcome">やあ。私はアオ。今日は何を話そうか。</div>
+      </div>
+      <div class="composer-wrap">
+        <div class="notice" id="notice" role="alert" aria-live="assertive"></div>
+        <form id="chat-form" class="composer">
+          <textarea id="message" rows="2" maxlength="2000" placeholder="アオに話しかける..." aria-label="メッセージ" required></textarea>
+          <button id="send" type="submit">送信</button>
+        </form>
+        <div class="hint">Enterで送信・Shift+Enterで改行。記憶と履歴はPCに保存されます。</div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
